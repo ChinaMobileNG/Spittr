@@ -22,7 +22,8 @@ public class JdbcSpitterRepository implements SpitterRepository {
 	
 	private static final String INSERT_SPITTER ="insert into spitter (username,password,first_name,last_name"
 			+ ") values (:username,:password,:first_name,:last_name)";
-	private static final String SELECT_SPITTER_BY_USERNAME = "select * from spitter where username = ?";
+	private static final String SELECT_SPITTER_BY_USERNAME = "select * from spitter where username = ? and"
+			+ " password = ?";
 	
 	@Autowired
 	public JdbcSpitterRepository(JdbcOperations jdbcOperations,
@@ -46,7 +47,7 @@ public class JdbcSpitterRepository implements SpitterRepository {
 	}
 
 	@Override
-	public Spitter findSpitterById(String username) {
+	public Spitter findSpitterByUsername(String username) {
 		// TODO Auto-generated method stub
 		return jdbcOperations.queryForObject(SELECT_SPITTER_BY_USERNAME, new SpitterRowMapper(),username);
 	}

@@ -25,13 +25,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages={"spittr","spitter"},
 				excludeFilters={@Filter(type=FilterType.ANNOTATION,value=EnableWebMvc.class)})
 public class RootConfig {
-	@Value("#{properties['jdbcDriver']}")
+	//@Value("#{properties['jdbcDriver']}")
+	@Value("#{dbconfig.jdbcDriver}")
 	private String dbDriver;
-	@Value("#{properties.jdbcUrl}")
+	@Value("#{dbconfig.jdbcUrl}")
 	private String dbUrl;
-	@Value("#{properties.username}")
+	@Value("#{dbconfig.username}")
 	private String username;
-	@Value("#{properties.password}")
+	@Value("#{dbconfig.password}")
 	private String password;
 	
 	@Bean
