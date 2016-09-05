@@ -6,7 +6,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import spittr.data.SpitterRepository;
 public class SpitterController {
 	private SpitterRepository spitterRepsitory;
 	
+	
 	@Autowired
 	public SpitterController(SpitterRepository spitterRepository) {
 		// TODO Auto-generated constructor stub
@@ -27,7 +29,7 @@ public class SpitterController {
 	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String showRegistrationForm(Model model){
-		model.addAttribute(new Spitter());
+		model.addAttribute("spitter",new Spitter());
 		return "registerForm";
 	}
 	
@@ -39,18 +41,19 @@ public class SpitterController {
 	 */
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String processRegistration(
-			@Valid Spitter spitter,
-			Errors errors){
-		if(errors.hasErrors()){
+			@ModelAttribute("spitter")@Valid Spitter spitter,
+			BindingResult result){
+		if(result.hasErrors()){
 			return "registerForm";
+		}else{
+			spitterRepsitory.addSpitter(spitter);
 		}
-		spitterRepsitory.addSpitter(spitter);
 		return "redirect:/spitter/"+spitter.getUsername();
 	}
 	
 	@RequestMapping(value="/{username}",method=RequestMethod.GET)
 	public String showProfile(@PathVariable String username,Model model){
-		Spitter spitter = spitterRepsitory.findSpitterById(username);
+		Spitter spitter = spitterRepsitory.findSpitterByUsername(username);
 		model.addAttribute("spitter", spitter);
 		return "profile";
 	}

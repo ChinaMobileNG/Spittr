@@ -3,20 +3,28 @@ package spittr;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
+
 public class Spitter {
 
 	private Long id;
+
+	@Autowired
+	@Qualifier("messageSource")
+	private MessageSource messageSource;
 	
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min=2,max=20,message="{firstName.error}")
 	private String firstName;
 	
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min=2,max=20,message="{lastName.error}")
 	private String lastName;
 	
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min=2,max=20,message="{username.error}")
 	private String username;
 	
 	public void setId(Long id) {
@@ -60,7 +68,7 @@ public class Spitter {
 	}
 
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min=2,max=20,message="{password.error}")
 	private String password;
 	
 	public Spitter(String firstName,String lastName,String username,String password){
