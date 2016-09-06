@@ -4,9 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,8 +66,15 @@ public class SpitterController {
 	}
 	
 	@RequestMapping(value="/signin",method=RequestMethod.POST)
-	public String processSignIn(HttpServletRequest request){
+	public String processSignIn(HttpServletRequest request,Model model){
 		String username=request.getParameter("username");
-		return "redirect:/spitter/"+username;
+		String password=request.getParameter("password");
+		model.addAttribute("spitter", spitterRepsitory.validateSpitter(username, password));
+		return "profile";
+	}
+	
+	@ExceptionHandler(EmptyResultDataAccessException.class)
+	public String handleSpitterLoadFail(){
+		return "loadfailError";
 	}
 }

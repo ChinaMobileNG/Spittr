@@ -12,7 +12,7 @@ import spittr.Spittle;
 public class MockSpittleRepository implements SpittleRepository {
 
 	@Override
-	public List<Spittle> findSpittles(long max, int count) {
+	public void createSpittles(long max, int count) {
 		// TODO Auto-generated method stub
 		List<Spittle> spittleList = new ArrayList<>();
 		for(int i=0;i<count;i++){
@@ -23,7 +23,6 @@ public class MockSpittleRepository implements SpittleRepository {
 					Double.valueOf(new Random().nextDouble()*100),
 					Long.valueOf(i)));
 		}
-		return spittleList;
 	}
 	
 	@Override
@@ -41,6 +40,18 @@ public class MockSpittleRepository implements SpittleRepository {
 	}
 
 	public Spitter findSpitterById(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addSpittle(Spittle spittle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Spittle> findAllSpittles() {
 		// TODO Auto-generated method stub
 		return null;
 	}

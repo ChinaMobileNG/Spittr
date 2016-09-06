@@ -13,7 +13,10 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
  * Configure other components rather than web components
@@ -56,6 +59,21 @@ public class RootConfig {
 	@Autowired
 	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource){
 		return new NamedParameterJdbcTemplate(dataSource);
+	}
+	
+	@Bean 
+	public TilesConfigurer tilesConfigurer(){
+		TilesConfigurer tilesConfigurer = new TilesConfigurer();
+		tilesConfigurer.setDefinitions(new String[]{
+				"/WEB-INF/layout/tiles.xml"
+		});
+		tilesConfigurer.setCheckRefresh(true);
+		return tilesConfigurer;
+	}
+	
+	@Bean
+	public ViewResolver viewResolver(){
+		return new TilesViewResolver();
 	}
 
 }

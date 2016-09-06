@@ -1,18 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ page session="false" %>
 <html>
 <head>
 <title>Spittr registration</title>
-<style type="text/css">
-.error{
-	font-weight:bold;
-	background-color:yellow;
-	color:red;
-	font-size:85%;
-}
-</style>
-<link type="text/css" href="../styles/color.css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="<s:url value="/resources/styles/customize.css" />"/>
 </head>
 <body>
 <h1>Register</h1>

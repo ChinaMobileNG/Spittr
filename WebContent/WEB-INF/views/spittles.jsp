@@ -9,9 +9,6 @@
 <body>
 <h1>Happy looking</h1>
 <div>
-<div>
-	<a href="<c:url value="/homePage"/>">Go Back to HomePage</a>
-</div>
 <br>
 <c:forEach items="${spittleList}" var="spittle">
 <div>
