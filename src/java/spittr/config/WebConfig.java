@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan("spittr.web")
 public class WebConfig extends WebMvcConfigurerAdapter{
+	/*
 	@Bean
 	public ViewResolver viewResolver(){
 		InternalResourceViewResolver resolver =
@@ -29,6 +30,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
+	*/
 	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){

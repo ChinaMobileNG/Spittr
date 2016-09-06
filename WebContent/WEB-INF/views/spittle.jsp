@@ -10,9 +10,6 @@
 </div>
 <body>
 	<div>
-		<a href="<c:url value="/homePage"/>">Go Back to HomePage</a><br>
-	</div>
-	<div>
 		<c:out value="${spittle.message }"/>
 	</div>	
 	<div>

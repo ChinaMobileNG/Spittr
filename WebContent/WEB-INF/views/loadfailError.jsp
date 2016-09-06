@@ -2,12 +2,11 @@
 <%@ page session="false" %>
 <html>
 <head>
-<title>Personal profile</title>
+<title>Sign In Error</title>
 <link rel="stylesheet" type="text/css" href="/resources/styles/customize.css"/>
 </head>
 <body>
-<h1>Profile</h1>
-<span>Hello, ${spitter.lastName} ${spitter.firstName} !!</span>
-<a href="<c:url value="/"/>" class="greycolor">write a spittle now</a>
+<h1>Sign In Failed</h1>
+<span>Unfortunately,maybe you provide the wrong password or username</span>
 </body>
 </html>
